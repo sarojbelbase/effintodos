@@ -1,16 +1,22 @@
 <template>
   <div class="loginpage">
     <section class="hero columns is-vcentered is-fullheight">
-      <div class="hero-body card has-text-centered has-background-white-bis">
-        <div class="login is-vcentered">
+      <div class="hero-body card">
+        <div class="card-content is-vcentered">
           <div class="title">
             <p class="title is-3">Welcome :)</p>
             <p class="subtitle is-size-6">We knew you were gonna come back.</p>
           </div>
-          <form>
+          <form @submit.prevent="login()">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" type="email" name="email" placeholder="Email" />
+                <input
+                  class="input is-rounded"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  v-model="email"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
@@ -23,12 +29,14 @@
                   type="password"
                   name="password"
                   placeholder="Password"
+                  v-model="password"
                 />
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
               </p>
             </div>
+            <p class="help is-danger" v-if="feedback">{{this.feedback}}</p>
             <button class="button is-block is-fullwidth is-dark is-rounded" type="submit">Login</button>
           </form>
           <br />
@@ -46,16 +54,38 @@
 </template>
 
 <script>
+import db from "@/firebase/init";
+import firebase from "firebase";
+
 export default {
   name: "login",
   data() {
-    return {};
+    return {
+      email: null,
+      password: null,
+      feedback: null
+    };
+  },
+  methods: {
+    login() {
+      if (this.email && this.password) {
+        this.feedback = null;
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(cred => {
+            this.$router.push({ name: "home" });
+          })
+          .catch(err => {
+            this.feedback = err.message;
+          });
+      } else {
+        this.feedback = "Please enter email & password.";
+      }
+    }
   }
 };
 </script>
 
 <style>
-html {
-  margin: 0px !important;
-}
 </style>
