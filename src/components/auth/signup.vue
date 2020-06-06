@@ -5,13 +5,15 @@
         <div class="card-content is-vcentered">
           <div class="title">
             <p class="title is-3">New Here?</p>
-            <p class="subtitle is-size-6">Just a quick signup to get you started.</p>
+            <p
+              class="subtitle is-size-6 has-text-weight-semibold"
+            >Just a quick signup to get you started.</p>
           </div>
           <form @submit.prevent="signUp()">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
                 <input
-                  class="input is-rounded"
+                  class="input is-rounded auths"
                   type="text"
                   placeholder="Username"
                   v-model="username"
@@ -23,7 +25,12 @@
             </div>
             <div class="field">
               <p class="control has-icons-left has-icons-right">
-                <input class="input is-rounded" type="email" placeholder="Email" v-model="email" />
+                <input
+                  class="input is-rounded auths"
+                  type="email"
+                  placeholder="Email"
+                  v-model="email"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
@@ -32,7 +39,7 @@
             <div class="field">
               <p class="control has-icons-left">
                 <input
-                  class="input is-rounded"
+                  class="input is-rounded auths"
                   type="password"
                   placeholder="Password"
                   v-model="password"
@@ -42,12 +49,12 @@
                 </span>
               </p>
             </div>
-            <p class="help is-danger" v-if="feedback">{{this.feedback}}</p>
+            <p class="help is-size-6 is-danger" v-if="feedback">{{this.feedback}}</p>
             <button class="button is-block is-fullwidth is-dark is-rounded" type="submit">Signup!</button>
           </form>
           <br />
           <nav class="level">
-            <div class="level-item has-text-centered is-uppercase has-text-dark title is-size-7">
+            <div class="level-item has-text-centered is-uppercase has-text-dark title is-size-6">
               <div>
                 <router-link :to="{name: 'login' }">Already have an account? Signin from here.</router-link>
               </div>
@@ -116,10 +123,4 @@ export default {
 </script>
 
 <style>
-.card {
-  margin-top: 1.5rem;
-  border-radius: 0px;
-  background: linear-gradient(45deg, #f3f3f3, #ffffff);
-  box-shadow: 14px -14px 27px #303030, -14px 14px 27px #ffffff;
-}
 </style>

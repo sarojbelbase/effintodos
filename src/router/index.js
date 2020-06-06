@@ -15,18 +15,25 @@ const router = new VueRouter({
       name: 'home',
       component: home,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        title: 'Effintodos',
       }
     },
     {
       path: '/auth/login',
       name: 'login',
-      component: login
+      component: login,
+      meta: {
+        title: 'Effintodos | Login Page',
+      }
     },
     {
       path: '/auth/signup',
       name: 'signup',
-      component: signup
+      component: signup,
+      meta: {
+        title: 'Effintodos | Signup Page',
+      }
     },
   ]
 })

@@ -5,13 +5,13 @@
         <div class="card-content is-vcentered">
           <div class="title">
             <p class="title is-3">Welcome :)</p>
-            <p class="subtitle is-size-6">We knew you were gonna come back.</p>
+            <p class="subtitle is-size-6 has-text-weight-semibold">We knew you were gonna come back.</p>
           </div>
           <form @submit.prevent="login()">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
                 <input
-                  class="input is-rounded"
+                  class="input is-rounded auths"
                   type="email"
                   name="email"
                   placeholder="Email"
@@ -25,7 +25,7 @@
             <div class="field">
               <p class="control has-icons-left">
                 <input
-                  class="input is-rounded"
+                  class="input is-rounded auths"
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -36,12 +36,12 @@
                 </span>
               </p>
             </div>
-            <p class="help is-danger" v-if="feedback">{{this.feedback}}</p>
+            <p class="help is-size-6 is-danger" v-if="feedback">{{this.feedback}}</p>
             <button class="button is-block is-fullwidth is-dark is-rounded" type="submit">Login</button>
           </form>
           <br />
           <nav class="level">
-            <div class="level-item has-text-centered is-uppercase has-text-dark title is-size-7">
+            <div class="level-item has-text-centered is-uppercase has-text-dark title is-size-6">
               <div>
                 <router-link :to="{name: 'signup' }">Don't have an account? Sign Up here!</router-link>
               </div>
