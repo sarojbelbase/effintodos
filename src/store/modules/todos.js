@@ -1,4 +1,6 @@
 import axios from 'axios';
+import firebase from "firebase";
+import db from "@/firebase/init";
 
 const state = {
     todos: []

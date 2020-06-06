@@ -1,7 +1,9 @@
 <template>
   <div class="addtodo container is-fluid">
     <div class="title">
-      <h3 class="callname">Hello @sidbelbase, hope you not letting grass grow under your feet!</h3>
+      <h3
+        class="callname"
+      >Hello @{{this.username}}, hope you not letting grass grow under your feet!</h3>
     </div>
     <div class="add">
       <form @submit="onSubmit" class="columns">
@@ -19,11 +21,15 @@
 
 <script>
 import { mapActions } from "vuex";
+import firebase from "firebase";
+import db from "@/firebase/init";
+
 export default {
   name: "AddTodo",
   data() {
     return {
-      title: ""
+      title: "",
+      username: null
     };
   },
   methods: {
@@ -32,6 +38,25 @@ export default {
       e.preventDefault();
       this.addTodo(this.title);
     }
+  },
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        db.collection("users")
+          .where("user_id", "==", user.uid)
+          .get()
+          .then(snapshot => {
+            snapshot.forEach(doc => {
+              this.username = doc.data().username;
+            });
+          })
+          .catch(err => {
+            console.log("Error, couldn't get any username.", err);
+          });
+      } else {
+        this.username = null;
+      }
+    });
   }
 };
 </script>
