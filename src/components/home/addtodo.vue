@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+// import { mapActions } from "vuex";
 import firebase from "firebase";
 import db from "@/firebase/init";
 
@@ -33,7 +33,21 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addTodo"]),
+    addTodo(title) {
+      if (title) {
+        const user = firebase.auth().currentUser;
+        db.collection("todos")
+          .add({
+            is_completed: false,
+            to_be_done: title,
+            user_id: user.uid,
+            added_on: Date.now()
+          })
+          .then(() => {
+            title = null;
+          });
+      }
+    },
     onSubmit(e) {
       e.preventDefault();
       this.addTodo(this.title);
