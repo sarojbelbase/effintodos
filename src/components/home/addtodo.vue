@@ -20,12 +20,10 @@
 </template>
 
 <script>
-// import { mapActions } from "vuex";
-import firebase from "firebase";
-import db from "@/firebase/init";
+import { mapActions } from "vuex";
 
 export default {
-  name: "AddTodo",
+  name: "addtodo",
   data() {
     return {
       title: "",
@@ -33,45 +31,32 @@ export default {
     };
   },
   methods: {
-    addTodo(title) {
-      if (title) {
-        const user = firebase.auth().currentUser;
-        db.collection("todos")
-          .add({
-            is_completed: false,
-            to_be_done: title,
-            user_id: user.uid,
-            added_on: Date.now()
-          })
-          .then(() => {
-            title = null;
-          });
-      }
-    },
+    ...mapActions(["add_todo"]),
     onSubmit(e) {
       e.preventDefault();
-      this.addTodo(this.title);
+      this.add_todo(this.title);
+      this.title = null;
     }
-  },
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        db.collection("users")
-          .where("user_id", "==", user.uid)
-          .get()
-          .then(snapshot => {
-            snapshot.forEach(doc => {
-              this.username = doc.data().username;
-            });
-          })
-          .catch(err => {
-            console.log("Error, couldn't get any username.", err);
-          });
-      } else {
-        this.username = null;
-      }
-    });
   }
+  // beforeCreate() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       db.collection("users")
+  //         .where("user_id", "==", user.uid)
+  //         .get()
+  //         .then(snapshot => {
+  //           snapshot.forEach(doc => {
+  //             this.username = doc.data().username;
+  //           });
+  //         })
+  //         .catch(err => {
+  //           console.log("Error, couldn't get any username.", err);
+  //         });
+  //     } else {
+  //       this.username = null;
+  //     }
+  //   });
+  // }
 };
 </script>
 
