@@ -40,11 +40,9 @@ const actions = {
         commit('remove_todo', id);
     },
 
-    update_todo({ commit }, clicked_item) {
+    async update_todo({ commit }, clicked_item) {
         const response = db.collection("todos").doc(clicked_item.id)
             .update({ is_completed: clicked_item.is_completed })
-        console.log(response.id)
-
         commit('clicked_todo', response)
     },
 
@@ -79,6 +77,7 @@ const mutations = {
         is_completed: todos.data().is_completed,
         id: todos.id
     }),
+    new_todo: (state, todo) => state.todos,
     remove_todo: (state, id) => {
         state.todos = state.todos.filter(todo => todo.id !== id)
     },

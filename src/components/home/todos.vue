@@ -47,6 +47,7 @@ export default {
         is_completed: !todo.is_completed
       };
       this.update_todo(double_clicked_todo);
+      todo.is_completed = !todo.is_completed;
     }
   },
   created() {
