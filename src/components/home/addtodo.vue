@@ -1,29 +1,38 @@
 <template>
   <div class="addtodo container is-fluid">
     <div class="title">
-      <h3
-        class="callname"
-      >Hello @{{this.username}}, hope you not letting grass grow under your feet!</h3>
+      <h3 class="callname">Hello{{this.username}}, hope you not letting grass grow under your feet!</h3>
     </div>
-    <div class="add">
-      <form @submit="onSubmit" class="columns">
-        <input
-          type="text"
-          class="writer column is-four-fifths"
-          v-model="title"
-          placeholder="Add Todo..."
-        />
-        <input type="submit" class="submitter column" value="Add Todo" />
-      </form>
+    <div class="columns is-vcentered interactive is-desktop is-multiline">
+      <div class="column is-four-fifths is-full-mobile">
+        <div class="add">
+          <form @submit="onSubmit" class="columns is-vcentered is-mobile">
+            <input
+              type="text"
+              class="writer column is-four-fifths"
+              v-model="title"
+              placeholder="Add Todo..."
+            />
+            <input type="submit" class="submitter column" value="Add Todo" />
+          </form>
+        </div>
+      </div>
+      <div class="column is-one-fifth is-full-mobile">
+        <filtertodos />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import filtertodos from "@/components/home/filtertodos";
 
 export default {
   name: "addtodo",
+  components: {
+    filtertodos
+  },
   data() {
     return {
       title: "",

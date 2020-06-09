@@ -1,14 +1,15 @@
 <template>
   <div class="todoist container is-fluid">
-    <addtodo />
-    <filtertodos />
+    <div>
+      <addtodo />
+    </div>
     <div class="legend is-size-5">
-      <span>Double click to mark as complete</span>
+      <span>Double click to mark it completed</span>
       <span>
         <span class="incomplete-box"></span> Incomplete
       </span>
       <span>
-        <span class="complete-box"></span> Complete
+        <span class="complete-box"></span> Completed
       </span>
     </div>
     <div class="todos">
@@ -29,14 +30,10 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import addtodo from "@/components/home/addtodo";
-import filtertodos from "@/components/home/filtertodos";
 
 export default {
   name: "todos",
-  components: {
-    addtodo,
-    filtertodos
-  },
+  components: { addtodo },
   computed: mapGetters(["all_todos"]),
   methods: {
     ...mapActions(["fetch_todos", "delete_todo", "update_todo"]),
