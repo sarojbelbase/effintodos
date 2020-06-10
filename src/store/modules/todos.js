@@ -51,22 +51,30 @@ const actions = {
         const option = e.target.options[e.target.options.selectedIndex].value;
 
         if (option == "is-completed") {
-            const snapshot = await db.collection("todos").orderBy("added_on", "desc")
-                .where('user_id', '==', user.uid).where("is_completed", "==", true).get()
-            const response = snapshot.docs.map(doc => doc.data())
-            commit('filtered_todos', response);
+            db.collection("todos").orderBy("added_on", "asc")
+                .where('user_id', '==', user.uid).where("is_completed", "==", true)
+                .onSnapshot(snapshot => {
+                    snapshot.docChanges().map(change => {
+                        commit('filtered_todos', change.doc);
+                    })
+                })
         }
         else if (option == "is-not-completed") {
-            const snapshot = await db.collection("todos").orderBy("added_on", "desc")
-                .where('user_id', '==', user.uid).where("is_completed", "==", false).get()
-            const response = snapshot.docs.map(doc => doc.data())
-            commit('filtered_todos', response);
+            db.collection("todos").orderBy("added_on", "asc")
+                .where('user_id', '==', user.uid).where("is_completed", "==", false)
+                .onSnapshot(snapshot => {
+                    snapshot.docChanges().map(change => {
+                        commit('filtered_todos', change.doc);
+                    })
+                })
         }
         else if (option == "all") {
-            const snapshot = await db.collection("todos")
-                .orderBy("added_on", "desc").where('user_id', '==', user.uid).get()
-            const response = snapshot.docs.map(doc => doc.data())
-            commit('filtered_todos', response);
+            db.collection("todos").orderBy("added_on", "asc")
+                .where('user_id', '==', user.uid).onSnapshot(snapshot => {
+                    snapshot.docChanges().map(change => {
+                        commit('filtered_todos', change.doc);
+                    })
+                })
         }
     }
 };
@@ -77,12 +85,17 @@ const mutations = {
         is_completed: todos.data().is_completed,
         id: todos.id
     }),
+    filtered_todos: (state, todos) => {
+        state.todos.splice(0, state.todos.length)
+        state.todos.unshift({
+            to_be_done: todos.data().to_be_done,
+            is_completed: todos.data().is_completed,
+            id: todos.id
+        })
+    },
     new_todo: (state, todo) => state.todos,
     remove_todo: (state, id) => {
         state.todos = state.todos.filter(todo => todo.id !== id)
-    },
-    filtered_todos: (state, todos) => {
-        state.todos = todos
     },
     clicked_todo: (state, clickedtodo) => {
         const index = state.todos.findIndex(todo => todo.id == clickedtodo.id);

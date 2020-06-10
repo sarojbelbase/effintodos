@@ -4,12 +4,20 @@ import VueRouter from 'vue-router'
 import home from '@/components/home/todos'
 import signup from '@/components/auth/signup'
 import login from '@/components/auth/login'
+import about from '@/components/home/about'
 
 Vue.use(VueRouter)
 
-
 const router = new VueRouter({
   routes: [
+    {
+      path: '/',
+      name: 'about',
+      component: about,
+      meta: {
+        title: 'Effintodos | About',
+      }
+    },
     {
       path: '/home',
       name: 'home',

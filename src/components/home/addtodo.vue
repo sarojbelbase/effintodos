@@ -1,8 +1,24 @@
 <template>
   <div class="addtodo container is-fluid">
-    <div class="title">
-      <h3 class="callname">Hello{{this.username}}, hope you not letting grass grow under your feet!</h3>
+    <div class="title is-flex">
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h3
+              class="callname"
+            >Hello{{this.username}}, hope you not letting grass grow under your feet!</h3>
+          </div>
+        </div>
+        <div class="level-left">
+          <div class="level-item">
+            <h3 class="callname ml-3">
+              <a @click="logout" class="link">Logout</a>
+            </h3>
+          </div>
+        </div>
+      </nav>
     </div>
+
     <div class="columns is-vcentered interactive is-desktop is-multiline">
       <div class="column is-four-fifths is-full-mobile">
         <div class="add">
@@ -26,6 +42,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import firebase from "firebase";
 import filtertodos from "@/components/home/filtertodos";
 
 export default {
@@ -45,6 +62,14 @@ export default {
       e.preventDefault();
       this.add_todo(this.title);
       this.title = null;
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "about" });
+        });
     }
   }
   // beforeCreate() {
