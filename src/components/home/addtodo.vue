@@ -6,7 +6,7 @@
           <div class="level-item">
             <h3
               class="callname"
-            >Hello{{this.username}}, hope you not letting grass grow under your feet!</h3>
+            >Hello {{this.username}}, hope you not letting grass grow under your feet!</h3>
           </div>
         </div>
         <div class="level-left">
@@ -41,9 +41,10 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import firebase from "firebase";
 import filtertodos from "@/components/home/filtertodos";
+import { mapGetters, mapActions } from "vuex";
+import firebase from "firebase";
+import db from "@/firebase/init";
 
 export default {
   name: "addtodo",
@@ -71,26 +72,26 @@ export default {
           this.$router.push({ name: "about" });
         });
     }
+  },
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        db.collection("users")
+          .where("user_id", "==", user.uid)
+          .get()
+          .then(snapshot => {
+            snapshot.forEach(doc => {
+              this.username = doc.data().username;
+            });
+          })
+          .catch(err => {
+            console.log("Error, couldn't get any username.", err);
+          });
+      } else {
+        this.username = null;
+      }
+    });
   }
-  // beforeCreate() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       db.collection("users")
-  //         .where("user_id", "==", user.uid)
-  //         .get()
-  //         .then(snapshot => {
-  //           snapshot.forEach(doc => {
-  //             this.username = doc.data().username;
-  //           });
-  //         })
-  //         .catch(err => {
-  //           console.log("Error, couldn't get any username.", err);
-  //         });
-  //     } else {
-  //       this.username = null;
-  //     }
-  //   });
-  // }
 };
 </script>
 

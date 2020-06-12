@@ -2,37 +2,59 @@ import firebase from "firebase";
 import db from "@/firebase/init";
 
 const state = {
-    todos: []
+    todos: [],
+    filter: 'all'
 };
 
 const getters = {
-    all_todos: state => state.todos
-};
+    completed_count(state) {
+        return state.todos.filter(todo => todo.is_completed).length
+    },
+
+    active_count(state) {
+        return state.todos.filter(todo => !todo.is_completed).length
+    },
+
+    filtered_todos(state) {
+        if (state.filter == 'all') {
+            return state.todos
+        } else if (state.filter == 'active') {
+            return state.todos.filter(todo => !todo.is_completed)
+        } else if (state.filter == 'completed') {
+            return state.todos.filter(todo => todo.is_completed)
+        }
+        return state.todos
+    }
+}
 
 const actions = {
 
     async fetch_todos({ commit }) {
         const user = firebase.auth().currentUser;
-        const ref = await db.collection("todos").orderBy("added_on", "asc").where('user_id', '==', user.uid)
-        ref.onSnapshot(snapshot => {
-            snapshot.docChanges().map(change => {
-                if (change.type == 'added') {
-                    commit('set_todos', change.doc);
-                }
+        await db.collection("todos").orderBy("added_on", "asc").
+            where('user_id', '==', user.uid).onSnapshot(snapshot => {
+                snapshot.docChanges().map(change => {
+
+                    if (change.type === 'added') {
+                        commit('set_todos', change.doc);
+                    }
+
+                    if (change.type === 'removed') {
+                        commit('remove_todo', change.doc.id)
+                    }
+                })
             })
-        })
     },
 
     async add_todo({ commit }, title) {
         const user = firebase.auth().currentUser;
-        const ref = await db.collection("todos")
-        const response = ref.add({
+        const response = await db.collection("todos").add({
             is_completed: false,
             to_be_done: title,
             user_id: user.uid,
             added_on: Date.now()
         })
-        commit('new_todo', response);
+        commit('set_todos', response);
     },
 
     async delete_todo({ commit }, id) {
@@ -76,15 +98,22 @@ const actions = {
                     })
                 })
         }
-    }
+    },
+
+    update_filter({ commit }, filter) {
+        commit('filtered_todos', filter)
+    },
 };
 
 const mutations = {
+    update_filter: (state, filter) => state.filter = filter,
+
     set_todos: (state, todos) => state.todos.unshift({
         to_be_done: todos.data().to_be_done,
         is_completed: todos.data().is_completed,
         id: todos.id
     }),
+
     filtered_todos: (state, todos) => {
         state.todos.splice(0, state.todos.length)
         state.todos.unshift({
@@ -93,10 +122,11 @@ const mutations = {
             id: todos.id
         })
     },
-    new_todo: (state, todo) => state.todos,
+
     remove_todo: (state, id) => {
         state.todos = state.todos.filter(todo => todo.id !== id)
     },
+
     clicked_todo: (state, clickedtodo) => {
         const index = state.todos.findIndex(todo => todo.id == clickedtodo.id);
         if (index !== -1) {

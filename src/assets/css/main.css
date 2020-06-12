@@ -104,15 +104,15 @@ a:visited {
 
 .todoist .complete-box {
 	display: inline-block;
-	width: 10px;
-	height: 10px;
+	width: 13px;
+	height: 13px;
 	background: var(--complete);
 }
 
 .todoist .incomplete-box {
 	display: inline-block;
-	width: 10px;
-	height: 10px;
+	width: 13px;
+	height: 13px;
 	background: var(--incomplete);
 }
 

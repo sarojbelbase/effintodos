@@ -32,6 +32,7 @@ const router = new VueRouter({
       name: 'login',
       component: login,
       meta: {
+        requiresVisitor: true,
         title: 'Effintodos | Login Page',
       }
     },
@@ -40,6 +41,7 @@ const router = new VueRouter({
       name: 'signup',
       component: signup,
       meta: {
+        requiresVisitor: true,
         title: 'Effintodos | Signup Page',
       }
     },
@@ -47,14 +49,23 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  let user = firebase.auth().currentUser
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
-    let user = firebase.auth().currentUser
     if (user) {
       next()
-    } else {
+    }
+    else {
       next({ name: 'login' })
     }
-  } else {
+  }
+  else if (to.matched.some(rec => rec.meta.requiresVisitor)) {
+    if (user) {
+      next({ name: 'home' })
+    } else {
+      next()
+    }
+  }
+  else {
     next()
   }
 })

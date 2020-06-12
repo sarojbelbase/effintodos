@@ -34,18 +34,28 @@
                 </p>
 
                 <div class="is-block">
-                  <router-link :to="{name: 'signup'}">
-                    <button
-                      class="button is-rounded is-small"
-                      style="background-color: #0b132b; color: white; font-weight: bold; text-transform: uppercase; padding:22px; border:none;"
-                    >Sign Up</button>
-                  </router-link>
-                  <router-link :to="{name: 'login'}">
-                    <button
-                      class="button is-rounded is-small ml-3"
-                      style="background-color: #463f3a; color: white; font-weight: bold; text-transform: uppercase; padding:23px; border:none;"
-                    >Log in</button>
-                  </router-link>
+                  <div v-if="!user">
+                    <router-link :to="{name: 'signup'}">
+                      <button
+                        class="button is-rounded is-small"
+                        style="background-color: #0b132b; color: white; font-weight: bold; text-transform: uppercase; padding:22px; border:none;"
+                      >Sign Up</button>
+                    </router-link>
+                    <router-link :to="{name: 'login'}">
+                      <button
+                        class="button is-rounded is-small ml-3"
+                        style="background-color: #463f3a; color: white; font-weight: bold; text-transform: uppercase; padding:23px; border:none;"
+                      >Log in</button>
+                    </router-link>
+                  </div>
+                  <div v-if="user">
+                    <router-link :to="{name: 'home'}">
+                      <button
+                        class="button is-rounded is-small"
+                        style="background-color: #0b132b; color: white; font-weight: bold; text-transform: uppercase; padding:22px; border:none;"
+                      >Go Home</button>
+                    </router-link>
+                  </div>
                   <div class="mt-6">
                     <nav class="level">
                       <div class="level-left">
@@ -88,10 +98,22 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   name: "about",
   data() {
-    return {};
+    return {
+      user: null
+    };
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+    });
   }
 };
 </script>
@@ -107,19 +129,4 @@ export default {
   filter: contrast(0.8);
   filter: grayscale(0.4);
 }
-
-/* .content {
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 3px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  top: 10px;
-  left: 0;
-  position: fixed;
-  margin-left: 20px;
-  margin-right: 20px;
-  right: 0;
-  z-index: 2;
-  padding: 0 10px;
-} */
 </style>

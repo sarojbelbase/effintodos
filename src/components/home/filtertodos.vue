@@ -4,9 +4,9 @@
       <div class="control has-icons-left">
         <div class="select is-medium is-rounded is-dark">
           <select @change="filter_todos($event)" class="selector">
-            <option class="option" value="all" selected>All</option>
-            <option class="option" value="is-completed">Completed</option>
-            <option class="option" value="is-not-completed">Incomplete</option>
+            <option class="option" value="all" @click="update_filter('all')">All</option>
+            <option class="option" value="active" @click="update_filter('active')">Active</option>
+            <option class="option" value="completed" @click="update_filter('completed')">Completed</option>
           </select>
         </div>
         <span class="icon is-small is-left">
@@ -18,9 +18,10 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "filtertodos",
-  methods: mapActions(["filter_todos"])
+  computed: mapState(["filter"]),
+  methods: mapActions(["filter_todos", "update_filter"])
 };
 </script>

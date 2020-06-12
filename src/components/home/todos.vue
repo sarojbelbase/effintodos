@@ -6,15 +6,16 @@
     <div class="legend is-size-5">
       <span>Double click to mark it completed</span>
       <span>
-        <span class="incomplete-box"></span> Incomplete
+        <span class="incomplete-box"></span> {{ active_count }} Active
       </span>
       <span>
-        <span class="complete-box"></span> Completed
+        <span class="complete-box"></span>
+        {{ completed_count }} Completed
       </span>
     </div>
     <div class="todos">
       <div
-        v-for="todo in all_todos"
+        v-for="todo in filtered_todos"
         :key="todo.id"
         @dblclick="on_double_click(todo)"
         :class="{'is-complete': todo.is_completed}"
@@ -34,7 +35,7 @@ import addtodo from "@/components/home/addtodo";
 export default {
   name: "todos",
   components: { addtodo },
-  computed: mapGetters(["all_todos"]),
+  computed: mapGetters(["filtered_todos", "completed_count", "active_count" ]),
   methods: {
     ...mapActions(["fetch_todos", "delete_todo", "update_todo"]),
     on_double_click(todo) {
