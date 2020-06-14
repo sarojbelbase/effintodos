@@ -1,6 +1,6 @@
 # effintodos
 
-I wish I had completed that in time.
+Don't let grass grow under your feet!
 
 ## Project setup
 
