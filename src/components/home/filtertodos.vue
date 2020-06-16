@@ -3,10 +3,12 @@
     <div class="field">
       <div class="control has-icons-left">
         <div class="select is-medium is-rounded is-dark">
-          <select @change="filter_todos($event)" class="selector">
-            <option class="option" value="all" @click="update_filter('all')">All</option>
-            <option class="option" value="active" @click="update_filter('active')">Active</option>
-            <option class="option" value="completed" @click="update_filter('completed')">Completed</option>
+          <select name="filterer" id="filter_todos" @change="filter_todos($event)" class="selector">
+            <option
+              v-for="(item, index) in filter_options"
+              :value="item.value"
+              :key="index"
+            >{{item.text}}</option>
           </select>
         </div>
         <span class="icon is-small is-left">
@@ -21,7 +23,16 @@
 import { mapActions, mapState } from "vuex";
 export default {
   name: "filtertodos",
+  data() {
+    return {
+      filter_options: [
+        { text: "All", value: "all" },
+        { text: "Active", value: "active" },
+        { text: "Completed", value: "completed" }
+      ]
+    };
+  },
   computed: mapState(["filter"]),
-  methods: mapActions(["filter_todos", "update_filter"])
+  methods: mapActions(["filter_todos"])
 };
 </script>

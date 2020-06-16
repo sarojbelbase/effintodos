@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import db from "@/firebase/init";
+import db from "@/firebase";
 import firebase from "firebase";
 
 export default {

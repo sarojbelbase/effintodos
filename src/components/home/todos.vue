@@ -6,7 +6,8 @@
     <div class="legend is-size-5">
       <span>Double click to mark it completed</span>
       <span>
-        <span class="incomplete-box"></span> {{ active_count }} Active
+        <span class="incomplete-box"></span>
+        {{ active_count }} Active
       </span>
       <span>
         <span class="complete-box"></span>
@@ -35,16 +36,11 @@ import addtodo from "@/components/home/addtodo";
 export default {
   name: "todos",
   components: { addtodo },
-  computed: mapGetters(["filtered_todos", "completed_count", "active_count" ]),
+  computed: mapGetters(["filtered_todos", "completed_count", "active_count"]),
   methods: {
     ...mapActions(["fetch_todos", "delete_todo", "update_todo"]),
     on_double_click(todo) {
-      const double_clicked_todo = {
-        id: todo.id,
-        to_be_done: todo.to_be_done,
-        is_completed: !todo.is_completed
-      };
-      this.update_todo(double_clicked_todo);
+      this.update_todo(todo);
       todo.is_completed = !todo.is_completed;
     }
   },

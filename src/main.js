@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import app from './app.vue'
-import router from './router'
-import store from './store'
+import router from '../src/router'
+import { store } from '../src/store'
 import firebase from 'firebase'
 import 'bulma/css/bulma.css'
 
