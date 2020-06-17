@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
 
   state: {
     todos: [],
-    filter: 'all'
+    filter: 'all',
+    loading: false,
   },
 
   getters: {
@@ -52,10 +53,12 @@ export const store = new Vuex.Store({
     },
 
     async fetch_todos({ commit }) {
+      commit('update_loading', true)
       const user = firebase.auth().currentUser;
       const snapshot = await db.collection("todos").
         orderBy("added_on", "asc").where('user_id', '==', user.uid).get()
       const response = snapshot.docs.map(doc => commit('set_todos', doc))
+      commit('update_loading', false)
     },
 
     async filter_todos({ commit }, e) {
@@ -90,10 +93,6 @@ export const store = new Vuex.Store({
       id: todos.id
     }),
 
-    update_filter: (state, filter) => state.filter = filter,
-
-    filtered_todos: (state, todos) => state.todos = todos,
-
     remove_todo: (state, id) => {
       state.todos = state.todos.filter(todo => todo.id !== id)
     },
@@ -104,5 +103,9 @@ export const store = new Vuex.Store({
         state.todos.splice(index, 1, clickedtodo);
       }
     },
+
+    update_filter: (state, filter) => state.filter = filter,
+    update_loading: (state, loading) => state.loading = loading,
+    filtered_todos: (state, todos) => state.todos = todos,
   }
 })

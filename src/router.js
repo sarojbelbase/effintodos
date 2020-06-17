@@ -14,17 +14,13 @@ const router = new VueRouter({
       path: '/',
       name: 'about',
       component: about,
-      meta: {
-        title: 'Effintodos | About',
-      }
     },
     {
       path: '/home',
       name: 'home',
       component: home,
       meta: {
-        requiresAuth: true,
-        title: 'Effintodos',
+        requiresAuth: true
       }
     },
     {
@@ -32,8 +28,7 @@ const router = new VueRouter({
       name: 'login',
       component: login,
       meta: {
-        requiresVisitor: true,
-        title: 'Effintodos | Login Page',
+        requiresVisitor: true
       }
     },
     {
@@ -41,8 +36,7 @@ const router = new VueRouter({
       name: 'signup',
       component: signup,
       meta: {
-        requiresVisitor: true,
-        title: 'Effintodos | Signup Page',
+        requiresVisitor: true
       }
     },
   ]

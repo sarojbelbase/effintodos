@@ -9,7 +9,7 @@
               class="subtitle is-size-6 has-text-weight-semibold"
             >Just a quick signup to get you started.</p>
           </div>
-          <form @submit.prevent="signUp()">
+          <form @submit.prevent="signup()">
             <div class="field">
               <p class="control has-icons-left has-icons-right">
                 <input
@@ -50,7 +50,10 @@
               </p>
             </div>
             <p class="help is-size-6 is-danger" v-if="feedback">{{this.feedback}}</p>
-            <button class="button is-block is-fullwidth is-dark is-rounded" type="submit">Signup!</button>
+            <button
+              :class="loading ? 'button is-block is-fullwidth is-dark is-rounded is-loading' : 'button is-block is-fullwidth is-dark is-rounded'"
+              type="submit"
+            >Signup!</button>
           </form>
           <br />
           <nav class="level">
@@ -75,47 +78,57 @@ export default {
   name: "signup",
   data() {
     return {
-      username: null,
       email: null,
+      username: null,
       password: null,
-      feedback: null
+      feedback: null,
+      loading: false
     };
   },
   methods: {
-    signUp() {
+    signup() {
       if (this.username && this.email && this.password) {
-        this.username = slugify(this.username, {
+        this.loading = true;
+        this.slug = slugify(this.username, {
           replacement: "-",
           remove: /[$*_+~.()'"!\-:@]/g,
           lower: true
         });
-        let ref = db.collection("users").doc(this.username);
+
+        let ref = db.collection("users").doc(this.slug);
         ref.get().then(doc => {
           if (doc.exists) {
             this.feedback = "This username is already taken.";
+            this.loading = false;
           } else {
+            this.feedback = null;
             firebase
               .auth()
               .createUserWithEmailAndPassword(this.email, this.password)
               .then(cred => {
-                ref.set({
-                  username: this.username,
-                  email: this.email,
-                  user_id: cred.user.uid
-                });
+                this.loading = false;
               })
               .then(() => {
                 this.$router.push({ name: "home" });
               })
               .catch(err => {
+                this.loading = false;
                 console.log(err);
                 this.feedback = err.message;
               });
-            console.log("good you are logged in");
+
+            if (!this.feedback) {
+              ref.set({
+                username: this.username,
+                email: this.email
+              });
+            }
+            console.log("You are now registered!");
           }
         });
       } else {
-        this.feedback = "Please provide a username.";
+        this.loading = false;
+        this.feedback = "Please fill in all the details.";
       }
     }
   }

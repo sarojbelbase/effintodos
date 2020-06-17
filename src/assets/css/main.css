@@ -7,6 +7,22 @@
 	border: 0;
 }
 
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: #1b1b1b;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #cecece;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #363636;
+}
+
 :root {
 	--shadowDark: #c7c7c7;
 	--background: #797575;
@@ -16,6 +32,7 @@
 	--complete: #212e3b;
 	--incomplete: #ffae00;
 	--submitter: #472d30;
+	--loader: #212529;
 }
 
 html {
@@ -86,6 +103,7 @@ a:visited {
 	position: relative;
 	cursor: pointer;
 	box-shadow: 2px 3px 4px #b1b1b1;
+	animation-duration: 0.3s;
 }
 
 .todoist i {

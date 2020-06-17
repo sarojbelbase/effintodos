@@ -27,7 +27,7 @@
               type="text"
               class="writer column is-four-fifths"
               v-model="title"
-              placeholder="Add Todo..."
+              placeholder="Add Tasks ..."
             />
             <input type="submit" class="submitter column" value="Add Todo" />
           </form>

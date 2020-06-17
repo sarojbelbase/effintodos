@@ -37,7 +37,10 @@
               </p>
             </div>
             <p class="help is-size-6 is-danger" v-if="feedback">{{this.feedback}}</p>
-            <button class="button is-block is-fullwidth is-dark is-rounded" type="submit">Login</button>
+            <button
+              :class="loading ? 'button is-block is-fullwidth is-dark is-rounded is-loading' : 'button is-block is-fullwidth is-dark is-rounded'"
+              type="submit"
+            >Login</button>
           </form>
           <br />
           <nav class="level">
@@ -63,23 +66,28 @@ export default {
     return {
       email: null,
       password: null,
-      feedback: null
+      feedback: null,
+      loading: false
     };
   },
   methods: {
     login() {
       if (this.email && this.password) {
+        this.loading = true;
         this.feedback = null;
         firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(cred => {
+            this.loading = false;
             this.$router.push({ name: "home" });
           })
           .catch(err => {
             this.feedback = err.message;
+            this.loading = false;
           });
       } else {
+        this.loading = false;
         this.feedback = "Please enter email & password.";
       }
     }
