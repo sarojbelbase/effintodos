@@ -25,11 +25,11 @@
         class="todo noselect has-text-weight-semibold is-size-6"
       >
         {{ todo.to_be_done }}
-        <i
+        <span
           v-show="active === todo.id"
           @click="delete_todo(todo.id)"
-          class="fas fa-trash"
-        ></i>
+          class="close"
+        >&times;</span>
       </div>
     </div>
   </div>
@@ -53,8 +53,7 @@ export default {
     on_double_click(todo) {
       this.update_todo(todo);
       todo.is_completed = !todo.is_completed;
-    },
-    hovered_element(id) {}
+    }
   },
   created() {
     this.fetch_todos();

@@ -4,22 +4,19 @@
       <nav class="level">
         <div class="level-left">
           <div class="level-item">
-            <h3
-              class="callname"
-            >Hello {{this.username}}, hope you not letting grass grow under your feet!</h3>
-          </div>
-        </div>
-        <div class="level-left">
-          <div class="level-item">
-            <h3 class="callname ml-3">
-              <a @click="logout" class="link">Logout</a>
+            <h3 class="callname">
+              Hello {{this.username}}, hope you not letting grass grow under your feet!
+              <a
+                class="link"
+                @click="logout"
+              >Logout</a>
             </h3>
           </div>
         </div>
       </nav>
     </div>
 
-    <div class="columns is-vcentered interactive is-desktop is-multiline">
+    <div class="columns is-vcentered interactive is-desktop">
       <div class="column is-four-fifths is-full-mobile">
         <div class="add">
           <form @submit="onSubmit" class="columns is-vcentered is-mobile">
@@ -27,7 +24,7 @@
               type="text"
               class="writer column is-four-fifths"
               v-model="title"
-              placeholder="Add Tasks ..."
+              placeholder="Add a task you want to complete..."
             />
             <input type="submit" class="submitter column" value="Add Todo" />
           </form>
