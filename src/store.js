@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     todos: [],
     filter: 'all',
+    username: null,
     loading: false,
   },
 
@@ -78,6 +79,10 @@ export const store = new Vuex.Store({
       commit('clicked_todo', response)
     },
 
+    get_username({ commit }) {
+      commit('fetch_name', firebase.auth().currentUser.displayName);
+    },
+
   },
 
   mutations: {
@@ -107,5 +112,6 @@ export const store = new Vuex.Store({
     update_filter: (state, filter) => state.filter = filter,
     update_loading: (state, loading) => state.loading = loading,
     filtered_todos: (state, todos) => state.todos = todos,
+    fetch_name: (state, name) => state.username = name
   }
 })

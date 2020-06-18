@@ -106,6 +106,9 @@ export default {
               .auth()
               .createUserWithEmailAndPassword(this.email, this.password)
               .then(cred => {
+                cred.user.updateProfile({
+                  displayName: this.slug
+                });
                 this.loading = false;
               })
               .then(() => {

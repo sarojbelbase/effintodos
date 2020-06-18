@@ -18,12 +18,18 @@
       <div
         v-for="todo in filtered_todos"
         :key="todo.id"
+        @mouseover="active = todo.id"
+        @mouseleave="active = null"
         @dblclick="on_double_click(todo)"
         :class="{'is-complete': todo.is_completed}"
         class="todo noselect has-text-weight-semibold is-size-6"
       >
         {{ todo.to_be_done }}
-        <i @click="delete_todo(todo.id)" class="fas fa-trash"></i>
+        <i
+          v-show="active === todo.id"
+          @click="delete_todo(todo.id)"
+          class="fas fa-trash"
+        ></i>
       </div>
     </div>
   </div>
@@ -35,6 +41,11 @@ import addtodo from "@/components/home/addtodo";
 
 export default {
   name: "todos",
+  data() {
+    return {
+      active: null
+    };
+  },
   components: { addtodo },
   computed: mapGetters(["filtered_todos", "completed_count", "active_count"]),
   methods: {
@@ -42,7 +53,8 @@ export default {
     on_double_click(todo) {
       this.update_todo(todo);
       todo.is_completed = !todo.is_completed;
-    }
+    },
+    hovered_element(id) {}
   },
   created() {
     this.fetch_todos();

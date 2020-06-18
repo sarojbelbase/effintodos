@@ -73,23 +73,9 @@ export default {
         });
     }
   },
-  beforeCreate() {
+  created() {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        db.collection("users")
-          .where("user_id", "==", user.uid)
-          .get()
-          .then(snapshot => {
-            snapshot.forEach(doc => {
-              this.username = doc.data().username;
-            });
-          })
-          .catch(err => {
-            console.log("Error, couldn't get any username.", err);
-          });
-      } else {
-        this.username = null;
-      }
+      this.username = user.displayName;
     });
   }
 };
