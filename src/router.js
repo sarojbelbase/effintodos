@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import VueRouter from 'vue-router'
 import home from '@/components/home/todos'
 import signup from '@/components/auth/signup'

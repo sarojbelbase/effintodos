@@ -58,7 +58,7 @@
 <script>
 import filtertodos from "@/components/home/filtertodos";
 import { mapGetters, mapActions } from "vuex";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import db from "@/firebase";
 
 export default {

@@ -72,7 +72,7 @@
 <script>
 import slugify from "slugify";
 import db from "@/firebase";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 export default {
   name: "signup",

@@ -15,7 +15,7 @@ effintodos
 
 ## Introduction
 
-effintodos is a todo app that helps you complete your tasks like they are supposed to. It eliminates the typical ~~strikethrough~~ and checkbox styles. So like in the image above it does them in **post-it note** style. It is inspired from a youtube tutorial but developed further to fit both UI & UX in mind. It is intuitive and simple to use bundled in a SPA (Single-Page Applications) with the use of the Vue framework.
+**effintodos** is a simple todo app that helps you complete your tasks like they are supposed to. It eliminates the typical ~~strikethrough~~ and checkbox styles. So like in the image above it does them in **post-it note** style. It is inspired from a youtube tutorial but developed further to fit both UI & UX in mind. It is intuitive and simple to use bundled in a SPA (Single-Page Applications) with the use of the Vue framework along with added user authentication.
 
 ### Features
 
@@ -23,21 +23,37 @@ effintodos is a todo app that helps you complete your tasks like they are suppos
 * Filter through active & completed tasks
 * Ultra fast task syncronization across all your logged devices
 * Load your data at once & sync later
+* Clear completed options
+
+<h4><a href="https://effintodos.now.sh">Go to website | effintodos.now.sh</a><h4>
+
 
 ## Prerequisites
 
 * Node.js
 * Yarn
-* NPM
-* Firebase / Firestore
+* Firebase
+* Firestore
 
 ## Used
 
-* Vue
-* Vuex
-* Firebase Authentication
-* Firestore
-* Bulma
+#### Tools & Frameworks
+
+* Vue : JS Framework
+* Vuex : State Management
+* Firebase : Authentication 
+* FontAwesome: Font Icons
+* Firestore : Database & Storage
+* Bulma: CSS Framework
+
+ #### Websites
+* <a href="https://loading.io">loading.io</a>
+* <a href="https://carbon.now.sh">carbon.now.sh</a>
+* <a href="https://tinypng.com">tinypng.com</a>
+* <a href="https://iconscout.com/">iconscount.com</a>
+* <a href="https://unsplash.com">unsplash.com</a>
+* <a href="https://vuejs.org">vuejs.org</a>
+
 
 ## Development setup
 

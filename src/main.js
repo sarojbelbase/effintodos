@@ -2,8 +2,9 @@ import Vue from 'vue'
 import app from './app.vue'
 import router from '../src/router'
 import { store } from '../src/store'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'bulma/css/bulma.css'
+import 'firebase/auth'
 
 let App = null;
 Vue.config.productionTip = false
