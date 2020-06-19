@@ -26,7 +26,7 @@
                   <br />
                   <strong
                     class="subtitle has-text-black"
-                    style="font-size: 17px; margin-top: -20px;"
+                    style="font-size: 19px; margin-top: -20px;"
                   >
                     Let's not ruin our todos with
                     <strike class="mr-1">strikethrough</strike>and checkboxes.
@@ -77,7 +77,7 @@
                           </span>
                           &emsp;
                           <span
-                            style="text-align: left; font-size: 15px; font-weight:bold;"
+                            style="text-align: left; font-size: 17px; font-weight:bold;"
                             class="has-text-dark"
                           >| Developed by sidbelbase</span>
                         </div>
@@ -88,7 +88,7 @@
               </div>
             </div>
             <div class="column is-three-fifths">
-              <img src="../../assets/images/carbon.svg" type="image/css" />
+              <img src="../../assets/images/carbon.svg" type="image/css" class="sideimg" />
             </div>
           </div>
         </div>
@@ -126,7 +126,10 @@ export default {
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
-  filter: contrast(0.8);
-  filter: grayscale(0.4);
+}
+
+.aboutpage .red-shadow {
+  -webkit-box-shadow: inset 0 -5px 0 rgba(255, 177, 74, 0.89);
+  box-shadow: inset 0 -5px 0 rgba(255, 213, 74, 0.89);
 }
 </style>

@@ -70,4 +70,116 @@ export default {
 </script>
 
 <style>
+.todoist .todos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.todoist .noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.todoist .todo {
+  background: var(--incomplete);
+  padding: 1rem;
+  color: var(--notmainColor);
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 2px 3px 4px #b1b1b1;
+}
+
+.todoist .close {
+  position: absolute;
+  font-size: 1.8em;
+  font-weight: 600;
+  top: 0px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.todoist .legend {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.todoist .complete-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: var(--complete);
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.todoist .incomplete-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: var(--incomplete);
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.todoist .boxedit {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.todoist .is-complete {
+  background: var(--complete);
+  color: #fff;
+}
+
+.lds-ring {
+  display: block;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin: auto;
+  margin-bottom: 16px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 28px;
+  margin: 4px;
+  border: 4px solid #000a1a;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #000a1a transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

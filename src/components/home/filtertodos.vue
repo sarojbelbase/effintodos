@@ -36,3 +36,20 @@ export default {
   methods: mapActions(["filter_todos"])
 };
 </script>
+<style>
+.filtertodos .filter {
+  color: var(--darker) !important;
+  margin: 4px;
+}
+.filtertodos .selector {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--darker) !important;
+  box-shadow: 2px 5px 6px #bebebe;
+  background-color: rgb(241, 241, 241);
+  border: none;
+}
+
+.filtertodos .selector .option {
+  color: var(--mainColor);
+}
+</style>

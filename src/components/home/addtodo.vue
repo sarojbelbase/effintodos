@@ -97,4 +97,39 @@ export default {
 </script>
 
 <style>
+.addtodo .callname {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.addtodo .interactive {
+  margin-bottom: 10px !important;
+}
+
+.addtodo .writer {
+  background: #f3f3f3;
+  color: var(--darker);
+  padding: 18px;
+  border: none;
+  border-radius: 30px 0px 0px 30px;
+  font-weight: 600;
+  font-size: 0.8em;
+  box-shadow: 10px 4px 4px #bebebe;
+}
+
+.addtodo .submitter {
+  background: var(--darker);
+  color: #fff;
+  padding: 18px;
+  border: none;
+  border-radius: 0px 30px 30px 0px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 2px 5px 6px #bebebe;
+}
+
+.addtodo .submitter:hover {
+  background: var(--mainColor);
+  transition: all 0.5s;
+}
 </style>

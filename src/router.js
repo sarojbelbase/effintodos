@@ -9,6 +9,7 @@ import about from '@/components/home/about'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',
