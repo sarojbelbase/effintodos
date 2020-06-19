@@ -15,7 +15,7 @@ effintodos
 
 ## Introduction
 
-effintodos is a todo app that helps you complete your tasks like they are supposed to. It eliminates the typical ~~strikethrough~~ and checkbox styles. So like in the image above it does them in **post-it note** style. It is inspired from a youtube tutorial but developed furthur to fit both UI & UX in mind. It is intutive and simple to use bundleded in a SPA (Single-Page Applications) with the use of Vue framework.
+effintodos is a todo app that helps you complete your tasks like they are supposed to. It eliminates the typical ~~strikethrough~~ and checkbox styles. So like in the image above it does them in **post-it note** style. It is inspired from a youtube tutorial but developed further to fit both UI & UX in mind. It is intuitive and simple to use bundled in a SPA (Single-Page Applications) with the use of the Vue framework.
 
 ### Features
 
