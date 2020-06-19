@@ -51,4 +51,4 @@ effintodos is a todo app that helps you complete your tasks like they are suppos
 
 `yarn build`
 
-### Made with  in Nepal.
+### Made with ❤️ in Nepal.
