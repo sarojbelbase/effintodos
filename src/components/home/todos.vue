@@ -4,16 +4,24 @@
       <addtodo />
     </div>
     <div class="legend is-size-5">
-      <span>Double click to mark it completed</span>
-      <span>
+      <span class="boxedit">Double click to mark it completed</span>
+      <span class="boxedit">
         <span class="incomplete-box"></span>
-        {{ active_count }} Active
+        {{ active_count }} Active Tasks
       </span>
-      <span>
+      <span class="boxedit">
         <span class="complete-box"></span>
-        {{ completed_count }} Completed
+        {{ completed_count }} Completed Tasks
       </span>
     </div>
+
+    <div v-if="$store.state.loading" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
     <div class="todos">
       <div
         v-for="todo in filtered_todos"

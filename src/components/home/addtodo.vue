@@ -1,20 +1,38 @@
 <template>
   <div class="addtodo container is-fluid">
-    <div class="title is-flex">
-      <nav class="level">
-        <div class="level-left">
-          <div class="level-item">
-            <h3 class="callname">
-              Hello {{this.username}}, hope you not letting grass grow under your feet!
-              <a
-                class="link"
-                @click="logout"
-              >Logout</a>
-            </h3>
-          </div>
+    <nav class="level is-mobile mt-3">
+      <!-- Left side -->
+      <div class="level-left">
+        <div class="level-item">
+          <router-link :to="{name: 'about'}" style="text-decoration: none;">
+            <p class="title is-5">
+              <img
+                src="../../assets/images/list.svg"
+                style="height: 20px; margin-right:4px;"
+                type="image/svg"
+              />
+              <strong style="font-size:1.4rem;">effintodos</strong>
+            </p>
+          </router-link>
         </div>
-      </nav>
-    </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="level-right">
+        <p class="level-item">
+          <i class="fa fa-user-circle mr-1"></i>
+          <strong class="title is-5">
+            <span>{{this.username}}</span>
+          </strong>
+        </p>
+        <p class="level-item linkers" @click="logout">
+          <i class="fas fa-sign-out-alt mr-1"></i>
+          <strong class="title is-5">
+            <span>Logout</span>
+          </strong>
+        </p>
+      </div>
+    </nav>
 
     <div class="columns is-vcentered interactive is-desktop">
       <div class="column is-four-fifths is-full-mobile">
@@ -30,8 +48,8 @@
           </form>
         </div>
       </div>
-      <div class="column is-one-fifth is-full-mobile">
-        <filtertodos />
+      <div class="column is-one-fifth ml-2">
+        <filtertodos class="is-hidden-touch" />
       </div>
     </div>
   </div>
