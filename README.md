@@ -59,7 +59,7 @@ effintodos
 
 #### First, replace your firebase/firestore credentials inside .env_sample & rename it into .env
 
-.env_sample
+**.env_sample**
 ```env
 VUE_APP_API_KEY="API KEY HERE"
 VUE_APP_AUTH_DOMAIN="AUTH DOMAIN HERE"
@@ -70,14 +70,14 @@ VUE_APP_MESSAGING_SENDER_ID="SENDER ID HERE"
 VUE_APP_APP_ID="APP ID HERE"
 ```
 
-#### Go to root folder & install the packages using: `yarn install`
+Go to root folder & install the packages using: `yarn install`
 
 
 ## Development Setups
 
-#### To compiles and hot-reload for every changes: `yarn serve`
+ To compiles and hot-reload for every changes: `yarn serve`
 
-#### To compiles & minify for production: `yarn build`
+ To compiles & minify for production: `yarn build`
 
 
 ### Made with ❤️ in Nepal.
