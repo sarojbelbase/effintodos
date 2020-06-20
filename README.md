@@ -31,9 +31,9 @@ effintodos
 ## Prerequisites
 
 * Node.js
-* Yarn
-* Firebase
-* Firestore
+* Yarn Package Manager
+* Firebase Account
+* Firestore Database
 
 ## Used
 
@@ -55,16 +55,29 @@ effintodos
 * <a href="https://vuejs.org">vuejs.org</a>
 
 
-## Development setup
+## Installation
 
-`yarn install`
+#### First, replace your firebase/firestore credentials inside .env_sample & rename it into .env
 
-### Compiles and hot-reloads for development
+.env_sample
+```env
+VUE_APP_API_KEY="API KEY HERE"
+VUE_APP_AUTH_DOMAIN="AUTH DOMAIN HERE"
+VUE_APP_DATABASE_URL="DATABASE URL HERE"
+VUE_APP_PROJECT_ID="PROJECT ID HERE"
+VUE_APP_STORAGE_BUCKET="STORAGE BUCKET HERE"
+VUE_APP_MESSAGING_SENDER_ID="SENDER ID HERE"
+VUE_APP_APP_ID="APP ID HERE"
+```
 
-`yarn serve`
+#### Go to root folder & install the packages using: `yarn install`
 
-### Compiles and minifies for production
 
-`yarn build`
+## Development Setups
+
+#### To compiles and hot-reload for every changes: `yarn serve`
+
+#### To compiles & minify for production: `yarn build`
+
 
 ### Made with ❤️ in Nepal.

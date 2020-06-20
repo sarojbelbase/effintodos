@@ -1,6 +1,7 @@
 {
 	"name": "effintodos",
-	"version": "1.0.4",
+	"description": "a simple todo app that helps you complete your tasks like they are supposed to",
+	"version": "1.0.5",
 	"author": "sidbelbase",
 	"private": true,
 	"scripts": {
