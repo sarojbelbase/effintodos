@@ -13,16 +13,16 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'about',
-      component: about,
-    },
-    {
-      path: '/home',
       name: 'home',
       component: home,
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: about
     },
     {
       path: '/auth/login',
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
     else {
-      next({ name: 'login' })
+      next({ name: 'about' })
     }
   }
   else if (to.matched.some(rec => rec.meta.requiresVisitor)) {

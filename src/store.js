@@ -78,11 +78,7 @@ export const store = new Vuex.Store({
         is_completed: !clicked_item.is_completed
       })
       commit('clicked_todo', response)
-    },
-
-    get_username({ commit }) {
-      commit('fetch_name', firebase.auth().currentUser.displayName);
-    },
+    }
 
   },
 
@@ -112,7 +108,6 @@ export const store = new Vuex.Store({
 
     update_filter: (state, filter) => state.filter = filter,
     update_loading: (state, loading) => state.loading = loading,
-    filtered_todos: (state, todos) => state.todos = todos,
-    fetch_name: (state, name) => state.username = name
+    filtered_todos: (state, todos) => state.todos = todos
   }
 })

@@ -72,6 +72,11 @@ export default {
       username: null
     };
   },
+  metaInfo() {
+    return {
+      title: `effintodos | ${this.username}`
+    };
+  },
   methods: {
     ...mapActions(["add_todo"]),
     onSubmit(e) {

@@ -85,6 +85,17 @@ export default {
       loading: false
     };
   },
+  metaInfo() {
+    return {
+      title: "effintodos | signup",
+      meta: [
+        {
+          name: "description",
+          content: "Register with effintodos to start tracking your progress."
+        }
+      ]
+    };
+  },
   methods: {
     signup() {
       if (this.username && this.email && this.password) {

@@ -70,6 +70,17 @@ export default {
       loading: false
     };
   },
+  metaInfo() {
+    return {
+      title: "effintodos | login",
+      meta: [
+        {
+          name: "description",
+          content: "Login with effintodos to start tasking."
+        }
+      ]
+    };
+  },
   methods: {
     login() {
       if (this.email && this.password) {
