@@ -95,6 +95,7 @@ export default {
           })
           .catch(err => {
             this.feedback = err.message;
+            console.log(this.feedback);
             this.loading = false;
           });
       } else {
