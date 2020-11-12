@@ -9,7 +9,7 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"bulma": "0.9.0",
+		"bulma": "0.9.1",
 		"core-js": "3.6.5",
 		"firebase": "7.15.0",
 		"slugify": "1.4.0",
