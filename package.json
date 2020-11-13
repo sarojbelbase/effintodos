@@ -11,7 +11,7 @@
 	"dependencies": {
 		"bulma": "0.9.0",
 		"core-js": "3.6.5",
-		"firebase": "7.15.0",
+		"firebase": "7.24.0",
 		"slugify": "1.4.0",
 		"vue": "2.6.12",
 		"vue-meta": "2.4.0",
