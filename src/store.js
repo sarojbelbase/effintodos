@@ -54,7 +54,8 @@ export const store = new Vuex.Store({
         });
     },
 
-    async fetch_todos({ commit }) {
+    async fetch_todos({state, commit }) {
+      if (state.todos.length) return;
       commit('update_loading', true)
       const user = firebase.auth().currentUser;
       const snapshot = await db.collection("todos").
